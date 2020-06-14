@@ -22,7 +22,7 @@ const TodoInput = (props: ITodoInputProps): ReactElement => {
   }
 
   const onKeyPressHandler = (event: React.KeyboardEvent) => {
-    if (event.key === 'Enter' && title.trim().length){
+    if (event.key === 'Enter' && title.trim().length){ 
       addTodo(todoItem(title))
       setTitle('')
     }
