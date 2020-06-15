@@ -3,9 +3,19 @@ import {MyPopup} from './Popup.styled'
 
 interface IPopupProps {
   sort: React.Ref<HTMLDivElement>
+  setSortBy(value: boolean): void
+  setSortText(value: string): void
 }
 
-export const Popup = ({sort}: IPopupProps): ReactElement => {
+export const Popup = (props: IPopupProps): ReactElement => {
+
+  const {sort, setSortBy, setSortText} = props
+
+  const sortHandler = (text: string) => {
+    setSortText(text)
+    setSortBy(true)
+  }
+  
   return (
     <MyPopup ref={sort}>
 
@@ -15,28 +25,28 @@ export const Popup = ({sort}: IPopupProps): ReactElement => {
 
       <div className='popup-wrap'>
 
-        <div className='popup-item'>
+        <div className='popup-item' onClick={() => sortHandler('по алфавиту')}>
           <span className="material-icons">
             text_rotate_vertical
           </span>
           <span>По алфавиту</span>
         </div>
 
-        <div className='popup-item'>
+        <div className='popup-item' onClick={() => sortHandler('по важности')}>
           <span className="material-icons">
             star_border
           </span>
-          <span>Важность</span>
+          <span>По важности</span>
         </div>
 
-        <div className='popup-item'>
+        <div className='popup-item' onClick={() => sortHandler('по выполненому')}>
           <span className="material-icons">
             check_circle_outline
           </span>
-          <span>Выполненые</span>
+          <span>По выполненому</span>
         </div>
 
-        <div className='popup-item'>
+        <div className='popup-item' onClick={() => sortHandler('по дате создания')}>
           <span className="material-icons">
             event
           </span>

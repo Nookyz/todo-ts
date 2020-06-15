@@ -40,6 +40,7 @@ const TodoInput = (props: ITodoInputProps): ReactElement => {
         value={title}
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
+        maxLength={255}
       />
     </MyInput>
   )

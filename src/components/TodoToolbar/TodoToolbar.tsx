@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useRef } from 'react'
+import React, { ReactElement, useRef, useState } from 'react'
 import {
   MyToolbar,
   MyToolbarTitle,
@@ -9,25 +9,33 @@ import { Popup } from '../Popup/Popup'
 
 interface ITodoToolbarProps {
   title: string
+  openPopup?: boolean
+  //setOpenPopup(value: boolean): void
+  setSortText(value: string): void
 }
 
-export const TodoToolbar = ({title}: ITodoToolbarProps): ReactElement => {
+export const TodoToolbar = (props: any): ReactElement => {
   
-  const [openPopup, setOpenPopup] = useState<boolean>(false)
+  //const {title, openPopup, setOpenPopup} = props
+  const {title, setSortBy, setSortText} = props
 
+  const [openPopup, setOpenPopup] = useState<boolean>(false)
+  
   const sort = useRef<HTMLDivElement>(null)
 
   useClose(sort, () => setOpenPopup(false))
+
+  
   
   return (
     <MyToolbar>
 
-      <MyToolbarTitle >
+      <MyToolbarTitle>
         <h2>{title}</h2>
       </MyToolbarTitle>
 
       <MyToolbarSort 
-      onClick={() => setOpenPopup(!openPopup)} 
+      onClick={() => setOpenPopup(true)} 
       disabled={openPopup}
       bg={openPopup}
       >
@@ -39,7 +47,7 @@ export const TodoToolbar = ({title}: ITodoToolbarProps): ReactElement => {
         </span>
       </MyToolbarSort>
 
-      {openPopup ? <Popup sort={sort}/> : null}
+      {openPopup ? <Popup sort={sort} setSortBy={setSortBy} setSortText={setSortText}/> : null}
       
     </MyToolbar>
   )

@@ -45,6 +45,7 @@ export const MyPopup = styled.div`
     :hover{
       background: #E0E0E0;
       color: #7464C0;
+      cursor: pointer;
     }
   }
 `

@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import { connect } from 'react-redux'
 import { ITodo } from '../store/types'
@@ -21,6 +21,8 @@ const Important = (props: IImportantProps): ReactElement => {
   
   const {addTodo, addTodoImp} = props
 
+  const [title] = useState<string>('Важно')
+
   const todoItem = (title: string) => ({
     id: uuid(),
     title: title,
@@ -34,12 +36,12 @@ const Important = (props: IImportantProps): ReactElement => {
   }
 
   useEffect(() => {
-    document.title = `Важно`
+    document.title = title
   })
 
   return (
     <MyPage>
-      <TodoToolbar title='Важно'/>
+      <TodoToolbar title={title}/>
       <TodoInput addTodo={addTodoHandler} todoItem={todoItem}/>
       <TodoListImp/>
     </MyPage>

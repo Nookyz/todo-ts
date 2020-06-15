@@ -31,6 +31,7 @@ export const MyToolbarSort = styled.button`
   :hover{
     background: #E0E0E0;
     border-radius: 3px;
+    cursor: pointer;
   }
 `
 

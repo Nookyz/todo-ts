@@ -31,7 +31,8 @@ export const MyTodoList = styled.div`
 `
 export const MyTodo = styled.div`
   margin: 0 20px;
-  height: 50px;
+  min-height: 50px;
+  max-height: 500px;
   border-bottom: 1px solid #D3D3D3;
   display: flex;
   span{
@@ -56,6 +57,7 @@ export const MyTodo = styled.div`
 `
 export const MyTodoContent = styled.div`
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   padding: 10px 0;  
   margin: 0 14px;
