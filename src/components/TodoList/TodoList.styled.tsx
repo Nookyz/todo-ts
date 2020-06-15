@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const MyTodoList = styled.div`
-  max-height: 800px;
+  max-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
   ::-webkit-scrollbar { 
@@ -63,6 +63,6 @@ export const MyTodoContent = styled.div`
   margin: 0 14px;
   font-size: 16px;
   width: 95%;
-  color: #34373d;
+  color: ${(props: {completed: boolean}) => (props.completed ? '#c3c3c3' : '#34373d')};
   text-decoration: ${(props: {completed: boolean}) => (props.completed ? 'line-through' : 'none')};
 `

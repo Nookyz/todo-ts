@@ -3,17 +3,19 @@ import {MyPopup} from './Popup.styled'
 
 interface IPopupProps {
   sort: React.Ref<HTMLDivElement>
-  setSortBy(value: boolean): void
-  setSortText(value: string): void
+  setSortBy: (value: boolean) => any
+  setSortText: (value: string) => any
+  setOpenPopup: (value: boolean) => any
 }
 
 export const Popup = (props: IPopupProps): ReactElement => {
 
-  const {sort, setSortBy, setSortText} = props
+  const {sort, setSortBy, setSortText, setOpenPopup} = props
 
   const sortHandler = (text: string) => {
     setSortText(text)
     setSortBy(true)
+    setOpenPopup(false)
   }
   
   return (

@@ -1,6 +1,7 @@
 import {Todos} from '../types'
 import {ITodo} from '../types'
 
+// SET
 export const setTodo = (todos: ITodo[]) => ({
   type: Todos.SET_TODO,
   payload: todos
@@ -11,6 +12,7 @@ export const setTodoImp = (todos: ITodo[]) => ({
   payload: todos
 })
 
+// ADD
 export const addTodo = (todos: ITodo) => ({
   type: Todos.ADD_TODO,
   payload: todos
@@ -21,6 +23,7 @@ export const addTodoImp = (todos: ITodo) => ({
   payload: todos
 })
 
+// DELETE
 export const deleteTodo = (id: string) => ({
   type: Todos.DELETE_TODO,
   payload: id
@@ -31,12 +34,35 @@ export const deleteFromImp = (id: string) => ({
   payload: id
 })
 
+// TOGGLE DONE
 export const toggleTodo = (id: string) => ({
   type: Todos.TOGGLE_TODO,
   payload: id
 })
 
+// TOGGLE STAR(IMP)
 export const toggleImpTodo = (id: string) => ({
   type: Todos.TOGGLE_IMP_TODO,
   payload: id
+})
+
+// SORT 
+export const sortByTitle = (orderBy: string) => ({
+  type: Todos.SORT_BY_TITLE,
+  payload: orderBy
+})
+
+export const sortByImp = (orderBy: string) => ({
+  type: Todos.SORT_BY_IMP,
+  payload: orderBy
+})
+
+export const sortByDone = (orderBy: string) => ({
+  type: Todos.SORT_BY_DONE,
+  payload: orderBy
+})
+
+export const sortByDate = (orderBy: string) => ({
+  type: Todos.SORT_BY_DATE,
+  payload: orderBy
 })

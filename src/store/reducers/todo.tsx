@@ -1,5 +1,7 @@
 import {Todos} from '../types'
 import {ITodoState} from '../types'
+import {ITodo} from '../types'
+import {sortBy} from 'lodash'
 
 const initialState: ITodoState = {
   todos: [],
@@ -71,6 +73,50 @@ export const todoReducer = (state = initialState, action: any) => {
           }
           return todo
         })
+      }
+    case Todos.SORT_BY_TITLE:
+      if(action.payload === 'asc'){
+        return {
+          ...state,
+          todos: sortBy(state.todos, [(o: ITodo) => o.title])
+        }
+      }
+      return {
+        ...state,
+        todos: sortBy(state.todos, [(o: ITodo) => o.title]).reverse()
+      }
+    case Todos.SORT_BY_IMP:
+      if(action.payload === 'asc'){
+        return {
+          ...state,
+          todos: sortBy(state.todos, [(o: ITodo) => o.imp])
+        }
+      }
+      return {
+        ...state,
+        todos: sortBy(state.todos, [(o: ITodo) => o.imp]).reverse()
+      }
+    case Todos.SORT_BY_DONE:
+      if(action.payload === 'asc'){
+        return {
+          ...state,
+          todos: sortBy(state.todos, [(o: ITodo) => o.completed])
+        }
+      }
+      return {
+        ...state,
+        todos: sortBy(state.todos, [(o: ITodo) => o.completed]).reverse()
+      }
+    case Todos.SORT_BY_DATE:
+      if(action.payload === 'asc'){
+        return {
+          ...state,
+          todos: sortBy(state.todos, [(o: ITodo) => o.date])
+        }
+      }
+      return {
+        ...state,
+        todos: sortBy(state.todos, [(o: ITodo) => o.date]).reverse()
       }
     default:
       return state

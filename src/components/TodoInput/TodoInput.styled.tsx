@@ -6,11 +6,11 @@ export const MyInput = styled.div`
   height: 50px;
   border-bottom: 1px solid #D3D3D3;
   display: flex;
-  
   span{
+    display: flex;
+    align-items: center;
     font-size: 28px;
     height: 100%;
-    padding: 10px 0;
     color: #7464C0;
     :hover{
       cursor: pointer;

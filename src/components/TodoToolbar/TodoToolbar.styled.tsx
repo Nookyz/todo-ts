@@ -5,7 +5,6 @@ export const MyToolbar = styled.div`
   padding: 12px 16px 0;
   width: 100%;
   justify-content: space-between;
-  
 `
 export const MyToolbarTitle = styled.div`
   height: 38px;
@@ -21,10 +20,10 @@ export const MyToolbarTitle = styled.div`
 export const MyToolbarSort = styled.button`
   margin-left: 20px;
   height: 38px;
-  display: flex;
+  display: ${(props: {bg: boolean, path: boolean}) => (props.path ? 'flex' : 'none')};
   align-items: center;
   padding: 0 5px ;
-  background: ${(props: {bg: boolean}) => (props.bg ? '#E0E0E0' : '#fff')}; 
+  background: ${(props: {bg: boolean, path: boolean}) => (props.bg ? '#E0E0E0' : '#fff')};
   border: transparent;
   outline: none;
   color: #7464C0;

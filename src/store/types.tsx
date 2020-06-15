@@ -1,6 +1,7 @@
 export interface ITodo {
   id: string
   title: string
+  date: Date
   imp: boolean
   completed: boolean
 }
@@ -19,4 +20,9 @@ export enum Todos {
   DELETE_FROM_IMP = 'DELETE_FROM_IMP',
   TOGGLE_TODO = 'TOGGLE_TODO',
   TOGGLE_IMP_TODO = 'TOGGLE_IMP_TODO',
+
+  SORT_BY_TITLE = 'SORT_BY_TITLE',
+  SORT_BY_IMP = 'SORT_BY_IMP',
+  SORT_BY_DONE = 'SORT_BY_DONE',
+  SORT_BY_DATE = 'SORT_BY_DATE'
 }

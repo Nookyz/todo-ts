@@ -7,7 +7,7 @@ import { addTodo } from '../store/actions/todo'
 import TodoList from '../components/TodoList/TodoList'
 import TodoInput from '../components/TodoInput/TodoInput'
 import { MyPage } from './page.styled'
-import { TodoSort } from '../components/TodoSort/TodoSort'
+import TodoSort from '../components/TodoSort/TodoSort'
 
 interface IHomeProps {
   addTodo(todo: ITodo): ITodo[]
@@ -25,6 +25,7 @@ const Home = (props: IHomeProps): ReactElement => {
   const todoItem = (title: string) => ({
     id: uuid(),
     title: title,
+    date: new Date(Date.now()),
     completed: false,
     imp: false
   })

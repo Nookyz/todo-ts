@@ -26,6 +26,7 @@ const Important = (props: IImportantProps): ReactElement => {
   const todoItem = (title: string) => ({
     id: uuid(),
     title: title,
+    date: new Date(Date.now()),
     completed: false,
     imp: true
   })
