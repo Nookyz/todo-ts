@@ -7,6 +7,8 @@ import {
 import { useClose } from '../../hooks/close.hook'
 import { Popup } from '../Popup/Popup'
 import { useHistory } from 'react-router-dom'
+import {CSSTransition} from 'react-transition-group'
+
 
 interface ITodoToolbarProps {
   title: string
@@ -30,8 +32,6 @@ export const TodoToolbar = (props: any): ReactElement => {
     setPath(history.location.pathname)
   }, [history])
 
-  
-  
   return (
     <MyToolbar>
 
@@ -40,10 +40,10 @@ export const TodoToolbar = (props: any): ReactElement => {
       </MyToolbarTitle>
 
       <MyToolbarSort 
-      onClick={() => setOpenPopup(true)} 
-      disabled={openPopup}
-      bg={openPopup}
-      path={path === '/' ? true : false}
+        onClick={() => setOpenPopup(true)} 
+        disabled={openPopup}
+        bg={openPopup}
+        path={path === '/' ? true : false}
       >
         <span className="material-icons">
           sort
@@ -53,13 +53,20 @@ export const TodoToolbar = (props: any): ReactElement => {
         </span>
       </MyToolbarSort>
 
-      {openPopup ? 
-      <Popup 
-      sort={sort} 
-      setSortBy={setSortBy} 
-      setSortText={setSortText}
-      setOpenPopup={setOpenPopup}
-      /> : null}
+      
+      <CSSTransition
+        in={openPopup}
+        timeout={500}
+        classNames='popup'
+        unmountOnExit
+      >
+        <Popup 
+          sort={sort} 
+          setSortBy={setSortBy} 
+          setSortText={setSortText}
+          setOpenPopup={setOpenPopup}
+        /> 
+      </CSSTransition>
       
     </MyToolbar>
   )

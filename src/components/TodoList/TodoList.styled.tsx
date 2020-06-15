@@ -4,6 +4,20 @@ export const MyTodoList = styled.div`
   max-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
+  .todo-enter {
+    opacity: 0;
+  }
+  .todo-enter-active {
+    opacity: 1;
+    transition: opacity 400ms ease-in;
+  }
+  .todo-exit {
+    opacity: 1;
+  }
+  .todo-exit-active {
+    opacity: 0;
+    transition: opacity 400ms ease-in;
+  }
   ::-webkit-scrollbar { 
     width: 5px; 
     height: 5px;
@@ -54,6 +68,7 @@ export const MyTodo = styled.div`
     width: 24px;
     color: #34373d;
   }
+  
 `
 export const MyTodoContent = styled.div`
   display: flex;

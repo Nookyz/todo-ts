@@ -51,15 +51,18 @@ const Home = (props: IHomeProps): ReactElement => {
   return (
     <MyPage>
       <TodoToolbar 
-      title={title}
-      setSortBy={setSortBy}
-      setSortText={setSortText}
+        title={title}
+        setSortBy={setSortBy}
+        setSortText={setSortText}
       />
+
       {sortBy ? <TodoSort setSortBy={setSortBy} sortText={sortText}/> : null}
+
       <TodoInput 
-      addTodo={addTodoHandler} 
-      todoItem={todoItem}
+        addTodo={addTodoHandler} 
+        todoItem={todoItem}
       />
+      
       <TodoList/>
     </MyPage>
   )

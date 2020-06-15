@@ -20,7 +20,7 @@ export const Popup = (props: IPopupProps): ReactElement => {
   
   return (
     <MyPopup ref={sort}>
-
+      
       <div className='popup-title'>
         Порядок сортировки
       </div>
@@ -56,7 +56,7 @@ export const Popup = (props: IPopupProps): ReactElement => {
         </div>
 
       </div>
-
-    </MyPopup>
+      
+    </MyPopup> 
   )
 }

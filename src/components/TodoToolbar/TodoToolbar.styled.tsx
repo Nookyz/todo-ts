@@ -5,6 +5,21 @@ export const MyToolbar = styled.div`
   padding: 12px 16px 0;
   width: 100%;
   justify-content: space-between;
+
+  .popup-enter {
+    opacity: 0;
+  }
+  .popup-enter-active {
+    opacity: 1;
+    transition: opacity 400ms ease-in;
+  }
+  .popup-exit {
+    opacity: 1;
+  }
+  .popup-exit-active {
+    opacity: 0;
+    transition: opacity 400ms ease-in;
+  }
 `
 export const MyToolbarTitle = styled.div`
   height: 38px;
