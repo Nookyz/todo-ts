@@ -2,6 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Todo
 
+[Live Demo](https://nookyz.github.io/todo-ts/)
+
 ## Install dependencies
 ```bash
   npm install
