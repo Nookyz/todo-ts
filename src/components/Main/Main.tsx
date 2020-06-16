@@ -45,7 +45,7 @@ const Main = (props: IMainProps): ReactElement => {
         impTodos={impTodos}
       />
       <Switch>
-        <Route path='/' exact component={Home}/>
+        <Route path='/todo-ts' exact component={Home}/>
         <Route path='/important' component={Important}/>
         <Route path='/myday' component={MyDay}/>
       </Switch>

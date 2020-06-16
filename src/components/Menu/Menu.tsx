@@ -50,7 +50,7 @@ const Menu = (props: IMenuProps): ReactElement => {
           </span>
         </NavLink>
 
-        <NavLink to='/' exact activeClassName='active-link'>
+        <NavLink to='/todo-ts' exact activeClassName='active-link'>
           <span className="material-icons">
             house
           </span>
