@@ -6,7 +6,7 @@ import { GlobalStyle } from './App.styled'
 import { Header } from '../Header/Header'
 import Main from '../Main/Main'
 
-const App = (): ReactElement => { 
+const App: React.FC = (): ReactElement => { 
   return (
     <BrowserRouter>
       <Provider store={store}>

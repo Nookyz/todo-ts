@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import {setTodo, setTodoImp} from '../../store/actions/todo'
 import Menu from '../Menu/Menu'
 import Home from '../../pages/Home'
-import MyDay from '../../pages/MyDay'
 import Important from '../../pages/Important'
 import { ITodo } from '../../store/types'
 import { MyMain } from './Main.styled'
@@ -12,11 +11,11 @@ import { MyMain } from './Main.styled'
 interface IMainProps {
   todos: ITodo[]
   impTodos: ITodo[]
-  setTodo(todos: ITodo[]): any
-  setTodoImp(todos: ITodo[]): any
+  setTodo: (todos: ITodo[]) => any
+  setTodoImp: (todos: ITodo[]) => any
 }
 
-const Main = (props: IMainProps): ReactElement => {
+const Main: React.FC<IMainProps> = (props): ReactElement => {
   const {todos, impTodos, setTodo, setTodoImp} = props
 
   const [openMenu, setOpenMenu] = useState<boolean>(false)
@@ -45,9 +44,8 @@ const Main = (props: IMainProps): ReactElement => {
         impTodos={impTodos}
       />
       <Switch>
-        <Route path='/todo-ts' exact component={Home}/>
+        <Route path='/' exact component={Home}/>
         <Route path='/important' component={Important}/>
-        <Route path='/myday' component={MyDay}/>
       </Switch>
     </MyMain>
   )

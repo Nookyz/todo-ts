@@ -18,14 +18,14 @@ import { TodoEmpty } from '../TodoEmpty/TodoEmpty'
 
 interface ITodoListProps {
   todos: ITodo[]
-  deleteTodo(id: string): ITodo[]
-  deleteFromImp(id: string): ITodo[]
-  toggleTodo(id: string): ITodo[]
-  toggleImpTodo(id: string): ITodo[]
-  addTodoImp(todos: ITodo): ITodo[]
+  deleteTodo: (id: string) => ITodo[]
+  deleteFromImp: (id: string) => ITodo[]
+  toggleTodo: (id: string) => ITodo[]
+  toggleImpTodo: (id: string) => ITodo[]
+  addTodoImp: (todos: ITodo) => ITodo[]
 }
 
-const TodoList = (props: ITodoListProps): ReactElement => {
+const TodoList: React.FC<ITodoListProps> = (props): ReactElement => {
   const {todos, deleteTodo, deleteFromImp, toggleTodo, toggleImpTodo, addTodoImp} = props
   
   const addToImpHandler = (todo: any) => {

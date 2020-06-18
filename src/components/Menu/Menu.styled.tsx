@@ -10,7 +10,7 @@ export const MyMenu = styled.div`
 `
 export const MyMenuHeader = styled.div`
   margin: 12px 0;
-  padding: 0 12px;
+  padding: 0 10px;
   
   width: 100%;
   height: 30px;
@@ -36,7 +36,7 @@ export const MyMenuNav = styled.div`
   a{
     display: grid;
     grid-template-columns: 35px 1fr 25px;
-    padding: 8px 0 8px 14px;
+    padding: 8px 0 8px 13px;
     align-items: center;
     color: #34373d;
     transition: all 0.2s ease-in-out;

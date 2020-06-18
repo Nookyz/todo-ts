@@ -9,12 +9,12 @@ import {
 
 interface IMenuProps {
   openMenu: boolean
-  setOpenMenu(value: boolean): void
+  setOpenMenu: (value: boolean) => void
   todos: ITodo[]
   impTodos: ITodo[]
 }
 
-const Menu = (props: IMenuProps): ReactElement => {
+const Menu: React.FC<IMenuProps> = (props): ReactElement => {
 
   const {openMenu, setOpenMenu, todos, impTodos} = props
 
@@ -29,15 +29,18 @@ const Menu = (props: IMenuProps): ReactElement => {
 
       <MyMenuNav open={openMenu}>
 
-        <NavLink to='/myday' activeClassName='active-link'>
+      <NavLink to='/' exact activeClassName='active-link'>
           <span className="material-icons">
-            wb_sunny
+            house
           </span>
           <span className='title-todo'>
-            Сегодня
+            Задачи
+          </span>
+          <span className='count-todo'>
+            {todos.length}
           </span>
         </NavLink>
-        
+
         <NavLink to='/important' activeClassName='active-link'>
           <span className="material-icons">
             star_border
@@ -47,18 +50,6 @@ const Menu = (props: IMenuProps): ReactElement => {
           </span>
           <span className='count-todo'>
             {impTodos.length}
-          </span>
-        </NavLink>
-
-        <NavLink to='/todo-ts' exact activeClassName='active-link'>
-          <span className="material-icons">
-            house
-          </span>
-          <span className='title-todo'>
-            Задачи
-          </span>
-          <span className='count-todo'>
-            {todos.length}
           </span>
         </NavLink>
         

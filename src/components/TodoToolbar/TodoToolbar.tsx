@@ -16,7 +16,7 @@ interface ITodoToolbarProps {
   setSortText?: (value: string) => void 
 }
 
-export const TodoToolbar = (props: any): ReactElement => {
+export const TodoToolbar: React.FC<any> = (props): ReactElement => {
   
   const {title, setSortBy, setSortText} = props
 

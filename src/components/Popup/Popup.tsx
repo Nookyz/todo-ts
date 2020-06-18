@@ -8,7 +8,7 @@ interface IPopupProps {
   setOpenPopup: (value: boolean) => any
 }
 
-export const Popup = (props: IPopupProps): ReactElement => {
+export const Popup: React.FC<IPopupProps> = (props): ReactElement => {
 
   const {sort, setSortBy, setSortText, setOpenPopup} = props
 

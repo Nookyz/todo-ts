@@ -4,7 +4,7 @@ import {
   MyHeaderTitle
 } from './Header.styled'
 
-export const Header = (): ReactElement => {
+export const Header: React.FC = (): ReactElement => {
   return (
     <MyHeader>
       <MyHeaderTitle>

@@ -16,19 +16,21 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group'
 
 interface ITodoListImpProps {
   impTodos: ITodo[]
-  deleteTodo(id: string): ITodo[]
-  deleteFromImp(id: string): ITodo[]
-  toggleTodo(id: string): ITodo[]
-  toggleImpTodo(id: string): ITodo[]
+  deleteTodo: (id: string) => ITodo[]
+  deleteFromImp: (id: string) => ITodo[]
+  toggleTodo: (id: string) => ITodo[]
+  toggleImpTodo: (id: string) => ITodo[]
 }
 
-const TodoListImp = (props: ITodoListImpProps): ReactElement => {
+const TodoListImp: React.FC<ITodoListImpProps> = (props): ReactElement => {
+
   const {impTodos, deleteTodo, deleteFromImp, toggleTodo, toggleImpTodo} = props
 
   const deleteFromImpHandler = (id: string) => {
     deleteFromImp(id)
     toggleImpTodo(id)
   }
+  
   return (
     <MyTodoList>
       <TransitionGroup>

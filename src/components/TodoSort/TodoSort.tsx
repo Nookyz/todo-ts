@@ -11,14 +11,14 @@ import {ITodo} from '../../store/types'
 
 interface ITodoSortProps {
   sortText: string
-  setSortBy(value: boolean): any
-  sortByTitle(value: string) : ITodo[]
-  sortByImp(value: string) : ITodo[]
-  sortByDone(value: string) : ITodo[]
-  sortByDate(value: string) : ITodo[]
+  setSortBy: (value: boolean) => any
+  sortByTitle: (value: string) => ITodo[]
+  sortByImp: (value: string) => ITodo[]
+  sortByDone: (value: string) => ITodo[]
+  sortByDate: (value: string) => ITodo[]
 }
 
-const TodoSort = (props: ITodoSortProps): ReactElement => {
+const TodoSort: React.FC<ITodoSortProps> = (props): ReactElement => {
 
   const {setSortBy, sortText, sortByTitle, sortByImp, sortByDone, sortByDate} = props
 

@@ -3,11 +3,11 @@ import {ITodo} from '../../store/types'
 import { MyInput } from './TodoInput.styled'
 
 interface ITodoInputProps {
-  addTodo(todo: ITodo): void,
-  todoItem(title: string): ITodo
+  addTodo: (todo: ITodo) => void,
+  todoItem: (title: string) => ITodo
 }
 
-const TodoInput = (props: ITodoInputProps): ReactElement => {
+const TodoInput: React.FC<ITodoInputProps> = (props): ReactElement => {
 
   const {addTodo, todoItem} = props
   const [title, setTitle] = useState<string>('')
