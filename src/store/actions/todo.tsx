@@ -34,9 +34,14 @@ export const deleteFromImp = (id: string) => ({
   payload: id
 })
 
-// TOGGLE DONE
-export const toggleTodo = (id: string) => ({
-  type: Todos.TOGGLE_TODO,
+// TOGGLE Todo Completed
+export const toggleTodoCompleted = (id: string) => ({
+  type: Todos.TOGGLE_TODO_COMPLETED,
+  payload: id
+})
+
+export const toggleTodoCompletedImp = (id: string) => ({
+  type: Todos.TOGGLE_TODO_COMPLETED_IMP,
   payload: id
 })
 

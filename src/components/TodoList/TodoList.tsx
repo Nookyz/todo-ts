@@ -4,9 +4,9 @@ import { ITodo } from '../../store/types'
 import {
   deleteTodo,
   deleteFromImp,
-  toggleTodo,
   toggleImpTodo,
-  addTodoImp
+  addTodoImp,
+  toggleTodoCompleted
 } from '../../store/actions/todo'
 import {
   MyTodoList,
@@ -20,13 +20,16 @@ interface ITodoListProps {
   todos: ITodo[]
   deleteTodo: (id: string) => ITodo[]
   deleteFromImp: (id: string) => ITodo[]
-  toggleTodo: (id: string) => ITodo[]
   toggleImpTodo: (id: string) => ITodo[]
   addTodoImp: (todos: ITodo) => ITodo[]
+  toggleTodoCompleted: (id: string) => ITodo[]
 }
 
 const TodoList: React.FC<ITodoListProps> = (props): ReactElement => {
-  const {todos, deleteTodo, deleteFromImp, toggleTodo, toggleImpTodo, addTodoImp} = props
+  const {
+    todos, deleteTodo, deleteFromImp,
+    toggleImpTodo, addTodoImp, toggleTodoCompleted
+  } = props
   
   const addToImpHandler = (todo: any) => {
     toggleImpTodo(todo.id)
@@ -48,11 +51,11 @@ const TodoList: React.FC<ITodoListProps> = (props): ReactElement => {
             >
               <MyTodo >
                 {todo.completed ? 
-                  <span className="material-icons" onClick={() => toggleTodo(todo.id)}>
+                  <span className="material-icons" onClick={() => toggleTodoCompleted(todo.id)}>
                     check_box
                   </span>
                   :
-                  <span className="material-icons checkbox" onClick={() => toggleTodo(todo.id)}>
+                  <span className="material-icons checkbox" onClick={() => toggleTodoCompleted(todo.id)}>
                     check_box_outline_blank
                   </span>
                 }
@@ -91,9 +94,9 @@ const mapStateToProps= (state: any) => ({
 const mapDispatchToProps = (dispatch: any) => ({
   deleteTodo: (id: string) => dispatch(deleteTodo(id)),
   deleteFromImp: (id: string) => dispatch(deleteFromImp(id)),
-  toggleTodo: (id: string) => dispatch(toggleTodo(id)),
   toggleImpTodo: (id: string) => dispatch(toggleImpTodo(id)),
-  addTodoImp: (todos: ITodo) => dispatch(addTodoImp(todos))
+  addTodoImp: (todos: ITodo) => dispatch(addTodoImp(todos)),
+  toggleTodoCompleted: (id: string) => dispatch(toggleTodoCompleted(id))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)
 

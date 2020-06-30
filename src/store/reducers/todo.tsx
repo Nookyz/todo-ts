@@ -42,7 +42,7 @@ export const todoReducer = (state = initialState, action: any) => {
         ...state,
         impTodos: state.impTodos.filter(todo => todo.id !== action.payload),
       }
-    case Todos.TOGGLE_TODO:
+    case Todos.TOGGLE_TODO_COMPLETED:
       return {
         ...state,
         todos: state.todos.map(todo =>{
@@ -50,7 +50,11 @@ export const todoReducer = (state = initialState, action: any) => {
             todo.completed = !todo.completed
           }
           return todo
-        }),
+        })
+      }
+    case Todos.TOGGLE_TODO_COMPLETED_IMP:
+      return {
+        ...state,
         impTodos: state.impTodos.map(todo =>{
           if(todo.id === action.payload){
             todo.completed = !todo.completed
