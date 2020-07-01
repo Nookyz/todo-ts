@@ -2,11 +2,10 @@ import {Todos} from '../types/types'
 import {ITodoState} from '../types/types'
 import {ITodo} from '../types/types'
 import {sortBy} from 'lodash'
-import {TodoAction} from '../types/actions'
+import {TodoAction} from '../types/todoActions'
 
 const initialState: ITodoState = {
-  todos: [],
-  //impTodos: []
+  todos: []
 }
 
 export const todoReducer = (state = initialState, action: TodoAction) => {
@@ -17,32 +16,16 @@ export const todoReducer = (state = initialState, action: TodoAction) => {
         ...state,
         todos: action.payload
       }
-    // case Todos.SET_TODO_IMPORTANT:
-    //   return {
-    //     ...state,
-    //     impTodos: action.payload
-    //   }
     case Todos.ADD_TODO:
       return {
         ...state,
         todos: [action.payload, ...state.todos]
       }
-    // case Todos.ADD_TODO_IMPORTANT:
-    //   return {
-    //     ...state,
-    //     impTodos: [action.payload, ...state.impTodos]
-    //   }
     case Todos.DELETE_TODO:
       return {
         ...state,
         todos: state.todos.filter(todo => todo.id !== action.payload),
-        //impTodos: state.impTodos.filter(todo => todo.id !== action.payload),
       }
-    // case Todos.DELETE_FROM_IMP:
-    //   return {
-    //     ...state,
-    //     impTodos: state.impTodos.filter(todo => todo.id !== action.payload),
-    //   }
     case Todos.TOGGLE_TODO_COMPLETED:
       return {
         ...state,
@@ -53,16 +36,6 @@ export const todoReducer = (state = initialState, action: TodoAction) => {
           return todo
         })
       }
-    // case Todos.TOGGLE_TODO_COMPLETED_IMP:
-    //   return {
-    //     ...state,
-    //     impTodos: state.impTodos.map(todo =>{
-    //       if(todo.id === action.payload){
-    //         todo.completed = !todo.completed
-    //       }
-    //       return todo
-    //     })
-    //   }
     case Todos.TOGGLE_IMP_TODO:
       return {
         ...state,
@@ -71,13 +44,7 @@ export const todoReducer = (state = initialState, action: TodoAction) => {
             todo.imp = !todo.imp
           }
           return todo
-        }),
-        // impTodos: state.impTodos.map(todo =>{
-        //   if(todo.id === action.payload){
-        //     todo.imp = !todo.imp
-        //   }
-        //   return todo
-        // })
+        })
       }
     case Todos.SORT_BY_TITLE:
       if(action.payload === 'asc'){

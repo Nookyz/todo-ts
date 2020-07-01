@@ -22,3 +22,11 @@ export enum Todos {
   SORT_BY_DONE = 'SORT_BY_DONE',
   SORT_BY_DATE = 'SORT_BY_DATE'
 }
+
+export interface IHelperState {
+  openMenu: boolean
+}
+
+export enum Helpers {
+  TOGGLE_MENU = 'TOGGLE_MENU'
+}

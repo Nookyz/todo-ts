@@ -6,7 +6,9 @@ export const MyMenu = styled.div`
   border-right: 1px solid #D3D3D3;
   transition: width 0.5s ease-in-out;
   width: ${(props: {open: boolean}) => (props.open ? "280px" : "50px")};
-
+  @media screen and (max-width: 375px){
+    width: ${(props: {open: boolean}) => (props.open ? "100vw" : "50px")};
+  }
 `
 export const MyMenuHeader = styled.div`
   margin: 12px 0;

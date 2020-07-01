@@ -1,13 +1,14 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import { useDispatch } from 'react-redux'
-import { ITodo } from '../store/types/types'
+import { useDispatch, useSelector } from 'react-redux'
+import { ITodo, IHelperState } from '../store/types/types'
 import { TodoToolbar } from '../components/TodoToolbar/TodoToolbar'
 import { addTodo } from '../store/actions/todo'
 import TodoList from '../components/TodoList/TodoList'
 import TodoInput from '../components/TodoInput/TodoInput'
 import { MyPage } from './page.styled'
 import TodoSort from '../components/TodoSort/TodoSort'
+import { AppState } from '../store/configureStore'
 
 interface IHomeProps {
   
@@ -19,6 +20,7 @@ const Home = (props: IHomeProps): ReactElement => {
   const [sortBy, setSortBy] = useState<boolean>(false)
   
   const [sortText, setSortText] = useState<string>('')
+  const openMenu = useSelector<AppState, IHelperState['openMenu']>(state => state.helper.openMenu)
   const dispatch = useDispatch()
 
   const todoItem = (title: string) => ({
@@ -36,10 +38,10 @@ const Home = (props: IHomeProps): ReactElement => {
   })
 
   useEffect(() => {
-    const savedSort: boolean = JSON.parse(localStorage.getItem('savedSort') || 'false')  
-    setSortBy(savedSort)
-    const savedTextSort: string = JSON.parse(localStorage.getItem('savedTextSort') || '')  
-    setSortText(savedTextSort)
+    // const savedSort: boolean = JSON.parse(localStorage.getItem('savedSort') || 'false')  
+    // setSortBy(savedSort)
+    // const savedTextSort: string = JSON.parse(localStorage.getItem('savedTextSort') || '')  
+    // setSortText(savedTextSort)
   }, [])
 
   useEffect(() => {
@@ -48,7 +50,7 @@ const Home = (props: IHomeProps): ReactElement => {
   }, [sortBy, sortText])
 
   return (
-    <MyPage>
+    <MyPage open={openMenu}>
       <TodoToolbar 
         title={title}
         setSortBy={setSortBy}

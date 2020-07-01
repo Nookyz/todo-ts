@@ -1,5 +1,5 @@
 import {Todos, ITodo} from '../types/types'
-import {TodoAction} from '../types/actions'
+import {TodoAction} from '../types/todoActions'
 
 // SET
 export const setTodo = (todos: ITodo[]): TodoAction => ({

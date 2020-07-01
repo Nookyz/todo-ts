@@ -6,22 +6,26 @@ import {
   MyMenuHeader,
   MyMenuNav
 } from './Menu.styled'
+import { useDispatch } from 'react-redux'
+import { toggleMenu } from '../../store/actions/helper'
 
 interface IMenuProps {
   openMenu: boolean
-  setOpenMenu: (value: boolean) => void
   todos: ITodo[]
 }
 
 const Menu: React.FC<IMenuProps> = (props): ReactElement => {
 
-  const {openMenu, setOpenMenu, todos} = props
+  const {openMenu, todos} = props
+  const dispatch = useDispatch()
 
+  const toggleMenuHandler = () => dispatch(toggleMenu(!openMenu))
+  
   return (
     <MyMenu open={openMenu}>
 
       <MyMenuHeader >
-        <span className="material-icons" onClick={() => setOpenMenu(!openMenu)}>
+        <span className="material-icons" onClick={() => toggleMenuHandler()}>
           menu
         </span>
       </MyMenuHeader>
