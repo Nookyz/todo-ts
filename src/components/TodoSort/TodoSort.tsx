@@ -4,23 +4,26 @@ import { MyTodoSort } from './TodoSort.styled'
 import { 
   sortByTitle,
   sortByImp,
-  sortByDone,
+  sortByCompleted,
   sortByDate
 } from '../../store/actions/todo'
-import {ITodo} from '../../store/types'
+import {ITodo} from '../../store/types/types'
 
 interface ITodoSortProps {
   sortText: string
   setSortBy: (value: boolean) => any
   sortByTitle: (value: string) => ITodo[]
   sortByImp: (value: string) => ITodo[]
-  sortByDone: (value: string) => ITodo[]
+  sortByCompleted: (value: string) => ITodo[]
   sortByDate: (value: string) => ITodo[]
 }
 
 const TodoSort: React.FC<ITodoSortProps> = (props): ReactElement => {
 
-  const {setSortBy, sortText, sortByTitle, sortByImp, sortByDone, sortByDate} = props
+  const {
+    setSortBy, sortText, sortByTitle, 
+    sortByImp, sortByCompleted, sortByDate
+  } = props
 
   const [sortIcon, setSortIcon] = useState<boolean>(false)
   
@@ -30,7 +33,7 @@ const TodoSort: React.FC<ITodoSortProps> = (props): ReactElement => {
     }else if(sortText === 'по важности'){
       sortByImp(orderBy)
     }else if(sortText === 'по выполненому'){
-      sortByDone(orderBy)
+      sortByCompleted(orderBy)
     }else{
       sortByDate(orderBy)
     }
@@ -63,7 +66,7 @@ const TodoSort: React.FC<ITodoSortProps> = (props): ReactElement => {
 const mapDispatchToProps = (dispatch: any) => ({
   sortByTitle: (orderBy: string) => dispatch(sortByTitle(orderBy)),
   sortByImp: (orderBy: string) => dispatch(sortByImp(orderBy)),
-  sortByDone: (orderBy: string) => dispatch(sortByDone(orderBy)),
+  sortByCompleted: (orderBy: string) => dispatch(sortByCompleted(orderBy)),
   sortByDate: (orderBy: string) => dispatch(sortByDate(orderBy))
 })
 

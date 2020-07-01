@@ -1,5 +1,5 @@
 import React, { ReactElement, useRef, useState } from 'react'
-import {ITodo} from '../../store/types'
+import {ITodo} from '../../store/types/types'
 import { MyInput } from './TodoInput.styled'
 
 interface ITodoInputProps {

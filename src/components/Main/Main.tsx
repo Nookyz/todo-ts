@@ -1,33 +1,37 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {setTodo, setTodoImp} from '../../store/actions/todo'
 import Menu from '../Menu/Menu'
 import Home from '../../pages/Home'
 import Important from '../../pages/Important'
-import { ITodo } from '../../store/types'
+import { ITodoState } from '../../store/types/types'
+import { ITodo } from '../../store/types/types'
 import { MyMain } from './Main.styled'
+import { AppState } from '../../store/configureStore'
+
 
 interface IMainProps {
-  todos: ITodo[]
-  impTodos: ITodo[]
-  setTodo: (todos: ITodo[]) => any
-  setTodoImp: (todos: ITodo[]) => any
+
 }
 
 const Main: React.FC<IMainProps> = (props): ReactElement => {
-  const {todos, impTodos, setTodo, setTodoImp} = props
-
   const [openMenu, setOpenMenu] = useState<boolean>(false)
+
+  const todos = useSelector<AppState, ITodoState['todos']>(state => state.todo.todos)
+  const impTodos = useSelector<AppState, ITodoState['impTodos']>(state => state.todo.impTodos)
+  
+  const dispatch = useDispatch()
+  
 
   useEffect(() => {
     const savedMenu: boolean = JSON.parse(localStorage.getItem('openMenu') || 'false')
     setOpenMenu(savedMenu)
     const todos: ITodo[] = JSON.parse(localStorage.getItem('todos') || '[]')
-    setTodo(todos)
+    dispatch(setTodo(todos))
     const todosImp: ITodo[] = JSON.parse(localStorage.getItem('todosImp') || '[]')
-    setTodoImp(todosImp)
-  }, [setTodo, setTodoImp])
+    dispatch(setTodoImp(todosImp))
+  }, [dispatch, setOpenMenu])
 
   useEffect(() => {
     localStorage.setItem('openMenu', JSON.stringify(openMenu))
@@ -51,14 +55,4 @@ const Main: React.FC<IMainProps> = (props): ReactElement => {
   )
 }
 
-const mapStateToProps= (state: any) => ({
-  todos: state.todo.todos,
-  impTodos: state.todo.impTodos
-})
-
-const mapDispatchToProps = (dispatch: any) => ({
-  setTodo: (todos: ITodo[]) => dispatch(setTodo(todos)),
-  setTodoImp: (todos: ITodo[]) => dispatch(setTodoImp(todos))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default Main

@@ -1,14 +1,15 @@
-import {Todos} from '../types'
-import {ITodoState} from '../types'
-import {ITodo} from '../types'
+import {Todos} from '../types/types'
+import {ITodoState} from '../types/types'
+import {ITodo} from '../types/types'
 import {sortBy} from 'lodash'
+import {TodoAction} from '../types/actions'
 
 const initialState: ITodoState = {
   todos: [],
   impTodos: []
-} 
+}
 
-export const todoReducer = (state = initialState, action: any) => {
+export const todoReducer = (state = initialState, action: TodoAction) => {
 
   switch(action.type){
     case Todos.SET_TODO:

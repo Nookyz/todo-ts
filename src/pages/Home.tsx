@@ -1,7 +1,7 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
 import { connect } from 'react-redux'
-import { ITodo } from '../store/types'
+import { ITodo } from '../store/types/types'
 import { TodoToolbar } from '../components/TodoToolbar/TodoToolbar'
 import { addTodo } from '../store/actions/todo'
 import TodoList from '../components/TodoList/TodoList'

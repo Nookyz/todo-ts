@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { connect } from 'react-redux'
-import { ITodo } from '../../store/types'
+import { ITodo } from '../../store/types/types'
 import {
   deleteTodo,
   deleteFromImp,

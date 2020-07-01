@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import {NavLink} from 'react-router-dom'
-import {ITodo} from '../../store/types'
+import {ITodo} from '../../store/types/types'
 import {
   MyMenu,
   MyMenuHeader,
