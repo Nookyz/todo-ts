@@ -1,11 +1,8 @@
 import React, { ReactElement } from 'react'
-import { connect } from 'react-redux'
-import { ITodo } from '../../store/types/types'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   deleteTodo, 
-  deleteFromImp,
   toggleImpTodo,
-  toggleTodoCompletedImp,
   toggleTodoCompleted
 } from '../../store/actions/todo'
 import {
@@ -14,42 +11,45 @@ import {
   MyTodoContent
 } from './TodoList.styled'
 import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import {AppState} from '../../store/configureStore'
+import {ITodoState} from '../../store/types/types'
+import {ITodo} from '../../store/types/types'
 
 interface ITodoListImpProps {
-  impTodos: ITodo[]
-  deleteTodo: (id: string) => ITodo[]
-  deleteFromImp: (id: string) => ITodo[]
-  toggleImpTodo: (id: string) => ITodo[]
-  toggleTodoCompletedImp: (id: string) => ITodo[]
+
 }
 
 const TodoListImp: React.FC<ITodoListImpProps> = (props): ReactElement => {
 
-  const {
-    impTodos, deleteTodo, deleteFromImp, 
-    toggleImpTodo, toggleTodoCompletedImp,
-  } = props
+  const todos = useSelector<AppState, ITodoState['todos']>(state => state.todo.todos)
+
+  const dispatch = useDispatch()
 
   const deleteFromImpHandler = (id: string) => {
-    deleteFromImp(id)
-    toggleImpTodo(id)
+    dispatch(toggleImpTodo(id))
+  }
+  const toggleTodoCompletedHandler = (id: string) => {
+    dispatch(toggleTodoCompleted(id))
+  }
+  const deleteTodoHandler = (id: string) => {
+    dispatch(deleteTodo(id))
   }
   return (
     <MyTodoList>
       <TransitionGroup>
-        {impTodos.map((todo: any) => (
+        {todos.filter((todo: ITodo) => todo.imp).map((todo: ITodo)=>(
           <CSSTransition 
           key={todo.id}
           timeout={500}
           classNames='todo'
           >
-            <MyTodo key={todo.id}>
+            <MyTodo>
               {todo.completed ?
-                <span className="material-icons" onClick={() => toggleTodoCompletedImp(todo.id)}>
+                <span className="material-icons" onClick={() => toggleTodoCompletedHandler(todo.id)}>
                   check_box
                 </span>
                 :
-                <span className="material-icons checkbox" onClick={() => toggleTodoCompletedImp(todo.id)}>
+                <span className="material-icons checkbox" onClick={() => toggleTodoCompletedHandler(todo.id)}>
                   check_box_outline_blank
                 </span>
               }
@@ -57,17 +57,13 @@ const TodoListImp: React.FC<ITodoListImpProps> = (props): ReactElement => {
               <MyTodoContent completed={todo.completed}>
                 {todo.title}
               </MyTodoContent>
-              {todo.imp ?
+              {todo.imp &&
                 <span className="material-icons" onClick={() => deleteFromImpHandler(todo.id)}>
                   star
                 </span>
-                :
-                <span className="material-icons star" onClick={() => deleteFromImpHandler(todo.id)}>
-                  star_border
-                </span>
               }
               
-              <span className="material-icons delete" onClick={() => deleteTodo(todo.id)}>
+              <span className="material-icons delete" onClick={() => deleteTodoHandler(todo.id)}>
                 delete
               </span>
             </MyTodo>
@@ -78,14 +74,4 @@ const TodoListImp: React.FC<ITodoListImpProps> = (props): ReactElement => {
   )
 }
 
-const mapStateToProps= (state: any) => ({
-  impTodos: state.todo.impTodos
-})
-const mapDispatchToProps = (dispatch: any) => ({
-  deleteTodo: (id: string) => dispatch(deleteTodo(id)),
-  deleteFromImp: (id: string) => dispatch(deleteFromImp(id)),
-  toggleImpTodo: (id: string) => dispatch(toggleImpTodo(id)),
-  toggleTodoCompletedImp: (id: string) => dispatch(toggleTodoCompletedImp(id)),
-  toggleTodoCompleted: (id: string) => dispatch(toggleTodoCompleted(id))
-})
-export default connect(mapStateToProps, mapDispatchToProps)(TodoListImp)
+export default TodoListImp

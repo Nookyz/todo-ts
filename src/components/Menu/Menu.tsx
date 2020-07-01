@@ -11,12 +11,11 @@ interface IMenuProps {
   openMenu: boolean
   setOpenMenu: (value: boolean) => void
   todos: ITodo[]
-  impTodos: ITodo[]
 }
 
 const Menu: React.FC<IMenuProps> = (props): ReactElement => {
 
-  const {openMenu, setOpenMenu, todos, impTodos} = props
+  const {openMenu, setOpenMenu, todos} = props
 
   return (
     <MyMenu open={openMenu}>
@@ -49,7 +48,7 @@ const Menu: React.FC<IMenuProps> = (props): ReactElement => {
             Важно
           </span>
           <span className='count-todo'>
-            {impTodos.length}
+            {todos.filter((todo: ITodo) => todo.imp).length}
           </span>
         </NavLink>
         

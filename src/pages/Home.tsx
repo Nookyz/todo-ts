@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { ITodo } from '../store/types/types'
 import { TodoToolbar } from '../components/TodoToolbar/TodoToolbar'
 import { addTodo } from '../store/actions/todo'
@@ -10,17 +10,16 @@ import { MyPage } from './page.styled'
 import TodoSort from '../components/TodoSort/TodoSort'
 
 interface IHomeProps {
-  addTodo(todo: ITodo): ITodo[]
+  
 }
 
 const Home = (props: IHomeProps): ReactElement => {
   
-  const {addTodo} = props
-
   const [title] = useState<string>('Задачи')
   const [sortBy, setSortBy] = useState<boolean>(false)
   
   const [sortText, setSortText] = useState<string>('')
+  const dispatch = useDispatch()
 
   const todoItem = (title: string) => ({
     id: uuid(),
@@ -30,7 +29,7 @@ const Home = (props: IHomeProps): ReactElement => {
     imp: false
   })
 
-  const addTodoHandler = (todo: ITodo) => addTodo(todo) 
+  const addTodoHandler = (todo: ITodo) => dispatch(addTodo(todo)) 
   
   useEffect(() => {
     document.title = title
@@ -68,8 +67,4 @@ const Home = (props: IHomeProps): ReactElement => {
   )
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-  addTodo: (todos: ITodo) => dispatch(addTodo(todos)),
-})
-
-export default connect(null, mapDispatchToProps)(Home)
+export default Home

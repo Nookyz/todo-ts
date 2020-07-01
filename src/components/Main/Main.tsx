@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useEffect } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import {setTodo, setTodoImp} from '../../store/actions/todo'
+import {setTodo} from '../../store/actions/todo'
 import Menu from '../Menu/Menu'
 import Home from '../../pages/Home'
 import Important from '../../pages/Important'
@@ -19,33 +19,27 @@ const Main: React.FC<IMainProps> = (props): ReactElement => {
   const [openMenu, setOpenMenu] = useState<boolean>(false)
 
   const todos = useSelector<AppState, ITodoState['todos']>(state => state.todo.todos)
-  const impTodos = useSelector<AppState, ITodoState['impTodos']>(state => state.todo.impTodos)
   
   const dispatch = useDispatch()
   
-
   useEffect(() => {
     const savedMenu: boolean = JSON.parse(localStorage.getItem('openMenu') || 'false')
     setOpenMenu(savedMenu)
     const todos: ITodo[] = JSON.parse(localStorage.getItem('todos') || '[]')
     dispatch(setTodo(todos))
-    const todosImp: ITodo[] = JSON.parse(localStorage.getItem('todosImp') || '[]')
-    dispatch(setTodoImp(todosImp))
   }, [dispatch, setOpenMenu])
 
   useEffect(() => {
     localStorage.setItem('openMenu', JSON.stringify(openMenu))
     localStorage.setItem('todos', JSON.stringify(todos))
-    localStorage.setItem('todosImp', JSON.stringify(impTodos))
-  }, [openMenu, todos, impTodos])
+  }, [openMenu, todos])
 
   return (
     <MyMain>
       <Menu
         openMenu={openMenu} 
         setOpenMenu={setOpenMenu} 
-        todos={todos} 
-        impTodos={impTodos}
+        todos={todos}
       />
       <Switch>
         <Route path='/' exact component={Home}/>

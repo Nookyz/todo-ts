@@ -1,27 +1,22 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { v4 as uuid } from 'uuid'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { ITodo } from '../store/types/types'
 import { TodoToolbar } from '../components/TodoToolbar/TodoToolbar'
 import TodoInput from '../components/TodoInput/TodoInput'
 import TodoListImp from '../components/TodoList/TodoListImp'
-import { 
-  addTodo, 
-  addTodoImp
-} from '../store/actions/todo'
+import { addTodo, } from '../store/actions/todo'
 import { MyPage } from './page.styled'
 
 
 interface IImportantProps {
-  addTodo(todo: ITodo): ITodo[],
-  addTodoImp(todo: ITodo): ITodo[]
+
 }
 
 const Important = (props: IImportantProps): ReactElement => {
-  
-  const {addTodo, addTodoImp} = props
 
   const [title] = useState<string>('Важно')
+  const dispatch = useDispatch()
 
   const todoItem = (title: string) => ({
     id: uuid(),
@@ -32,8 +27,7 @@ const Important = (props: IImportantProps): ReactElement => {
   })
 
   const addTodoHandler = (todo: ITodo) => {
-    addTodo(todo)
-    addTodoImp(todo)
+    dispatch(addTodo(todo))
   }
 
   useEffect(() => {
@@ -48,8 +42,5 @@ const Important = (props: IImportantProps): ReactElement => {
     </MyPage>
   )
 }
-const mapDispatchToProps = (dispatch: any) => ({
-  addTodo: (todos: ITodo) => dispatch(addTodo(todos)),
-  addTodoImp: (todos: ITodo) => dispatch(addTodoImp(todos))
-})
-export default connect(null, mapDispatchToProps)(Important)
+
+export default Important

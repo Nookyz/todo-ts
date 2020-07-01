@@ -7,10 +7,6 @@ export const setTodo = (todos: ITodo[]): TodoAction => ({
   payload: todos
 })
 
-export const setTodoImp = (todos: ITodo[]): TodoAction => ({
-  type: Todos.SET_TODO_IMPORTANT,
-  payload: todos
-})
 
 // ADD
 export const addTodo = (todos: ITodo): TodoAction => ({
@@ -18,10 +14,6 @@ export const addTodo = (todos: ITodo): TodoAction => ({
   payload: todos
 })
 
-export const addTodoImp = (todos: ITodo): TodoAction => ({
-  type: Todos.ADD_TODO_IMPORTANT,
-  payload: todos
-})
 
 // DELETE
 export const deleteTodo = (id: string): TodoAction => ({
@@ -29,19 +21,9 @@ export const deleteTodo = (id: string): TodoAction => ({
   payload: id
 })
 
-export const deleteFromImp = (id: string): TodoAction => ({
-  type: Todos.DELETE_FROM_IMP,
-  payload: id
-})
-
 // TOGGLE Todo Completed
 export const toggleTodoCompleted = (id: string): TodoAction => ({
   type: Todos.TOGGLE_TODO_COMPLETED,
-  payload: id
-})
-
-export const toggleTodoCompletedImp = (id: string): TodoAction => ({
-  type: Todos.TOGGLE_TODO_COMPLETED_IMP,
   payload: id
 })
 

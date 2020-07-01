@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { MyTodoSort } from './TodoSort.styled'
 import { 
   sortByTitle,
@@ -7,35 +7,29 @@ import {
   sortByCompleted,
   sortByDate
 } from '../../store/actions/todo'
-import {ITodo} from '../../store/types/types'
 
 interface ITodoSortProps {
   sortText: string
   setSortBy: (value: boolean) => any
-  sortByTitle: (value: string) => ITodo[]
-  sortByImp: (value: string) => ITodo[]
-  sortByCompleted: (value: string) => ITodo[]
-  sortByDate: (value: string) => ITodo[]
 }
 
 const TodoSort: React.FC<ITodoSortProps> = (props): ReactElement => {
 
-  const {
-    setSortBy, sortText, sortByTitle, 
-    sortByImp, sortByCompleted, sortByDate
-  } = props
+  const {setSortBy, sortText} = props
 
   const [sortIcon, setSortIcon] = useState<boolean>(false)
   
+  const dispatch = useDispatch()
+
   const sortHandler = (orderBy: string) => {
     if(sortText === 'по алфавиту'){
-      sortByTitle(orderBy) 
+      dispatch(sortByTitle(orderBy))
     }else if(sortText === 'по важности'){
-      sortByImp(orderBy)
+      dispatch(sortByImp(orderBy))
     }else if(sortText === 'по выполненому'){
-      sortByCompleted(orderBy)
+      dispatch(sortByCompleted(orderBy))
     }else{
-      sortByDate(orderBy)
+      dispatch(sortByDate(orderBy))
     }
     setSortIcon(!sortIcon)
   }
@@ -63,11 +57,4 @@ const TodoSort: React.FC<ITodoSortProps> = (props): ReactElement => {
   )
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-  sortByTitle: (orderBy: string) => dispatch(sortByTitle(orderBy)),
-  sortByImp: (orderBy: string) => dispatch(sortByImp(orderBy)),
-  sortByCompleted: (orderBy: string) => dispatch(sortByCompleted(orderBy)),
-  sortByDate: (orderBy: string) => dispatch(sortByDate(orderBy))
-})
-
-export default connect(null, mapDispatchToProps)(TodoSort)
+export default TodoSort

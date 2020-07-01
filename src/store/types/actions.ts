@@ -1,12 +1,8 @@
 import {ITodo, Todos} from './types'
 
+// SET TODOS
 export type SetTodoAction = {
   type: typeof Todos.SET_TODO
-  payload: ITodo[]
-}
-
-export type SetTodoImpAction = {
-  type: typeof Todos.SET_TODO_IMPORTANT
   payload: ITodo[]
 }
 
@@ -16,30 +12,15 @@ export type AddTodoAction = {
   payload: ITodo
 }
 
-export type AddTodoImpAction = {
-  type: typeof Todos.ADD_TODO_IMPORTANT,
-  payload: ITodo
-}
-
 // DELETE
 export type DeleteTodoAction = {
   type: typeof Todos.DELETE_TODO,
   payload: string
 }
 
-export type DeleteFromImpAction = {
-  type: typeof Todos.DELETE_FROM_IMP,
-  payload: string
-}
-
 // TOGGLE Todo Completed
 export type ToggleTodoCompletedAction = {
   type: typeof Todos.TOGGLE_TODO_COMPLETED,
-  payload: string
-}
-
-export type ToggleTodoCompletedImpAction = {
-  type: typeof Todos.TOGGLE_TODO_COMPLETED_IMP,
   payload: string
 }
 
@@ -71,13 +52,9 @@ export type SortByDateAction = {
 }
 
 export type TodoAction = SetTodoAction 
-| SetTodoImpAction 
 | AddTodoAction 
-| AddTodoImpAction
 | DeleteTodoAction 
-| DeleteFromImpAction 
 | ToggleTodoCompletedAction
-| ToggleTodoCompletedImpAction 
 | ToggleImpTodoAction 
 | SortByTitleAction
 | SortByImpAction
