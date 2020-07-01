@@ -37,18 +37,6 @@ const Home = (props: IHomeProps): ReactElement => {
     document.title = title
   })
 
-  useEffect(() => {
-    // const savedSort: boolean = JSON.parse(localStorage.getItem('savedSort') || 'false')  
-    // setSortBy(savedSort)
-    // const savedTextSort: string = JSON.parse(localStorage.getItem('savedTextSort') || '')  
-    // setSortText(savedTextSort)
-  }, [])
-
-  useEffect(() => {
-    localStorage.setItem('savedSort', JSON.stringify(sortBy))
-    localStorage.setItem('savedTextSort', JSON.stringify(sortText))
-  }, [sortBy, sortText])
-
   return (
     <MyPage open={openMenu}>
       <TodoToolbar 

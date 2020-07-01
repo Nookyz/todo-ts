@@ -9,7 +9,6 @@ import { ITodoState, IHelperState } from '../../store/types/types'
 import { ITodo } from '../../store/types/types'
 import { MyMain } from './Main.styled'
 import { AppState } from '../../store/configureStore'
-//import { toggleMenu } from '../../store/actions/helper'
 
 interface IMainProps {
 
@@ -23,14 +22,11 @@ const Main: React.FC<IMainProps> = (props): ReactElement => {
   const dispatch = useDispatch()
   
   useEffect(() => {
-    // const savedMenu: boolean = JSON.parse(localStorage.getItem('openMenu') || 'false')
-    // dispatch(toggleMenu(savedMenu))
     const todos: ITodo[] = JSON.parse(localStorage.getItem('todos') || '[]')
     dispatch(setTodo(todos))
   }, [dispatch])
 
   useEffect(() => {
-    //localStorage.setItem('openMenu', JSON.stringify(openMenu))
     localStorage.setItem('todos', JSON.stringify(todos))
   }, [openMenu, todos])
 
